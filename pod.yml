@@ -1,0 +1,32 @@
+################# pod creation
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-1
+  labels:
+    project: zomato
+    env: test
+spec:
+  containers:
+    - name: cont1
+      image: shaikmustafa/cycle
+      ports:
+        - containerPort: 80
+
+############################# service ---> expose
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myservice
+
+spec:
+  type: NodePort
+  selector:
+    projecct: app
+    env: dev
+  ports:
+   - port: 80
+     targetPort: 80
+     nodePort: 30001
